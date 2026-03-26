@@ -1,0 +1,32 @@
+import os
+
+# Google Workspace Scopes
+SCOPES = [
+    'https://www.googleapis.com/auth/drive',
+    'https://www.googleapis.com/auth/documents'
+]
+
+# Folders (We'll use the provided ID for input, and create the others inside it)
+INPUT_FOLDER_ID = "1NxpRRuX07UFb20KsrSJq9D_9suScYpww"
+DOCS_FOLDER_ID = "1tbWXTS4GND5n7nFI9SsbQUGS7zqSoCLZ"
+PROCESSED_FOLDER_NAME = "Processed"
+
+# Gemini Config
+GEMINI_MODEL = "gemini-flash-latest"
+
+# Prompt for the AI
+SYSTEM_PROMPT = """
+You are an expert at extracting math questions from PDF documents.
+Extract all questions, their 4 options, the exam name (if visible), the correct answer, and the exact explanation/solution provided IN THE PDF.
+
+CRITICAL TOKEN SAVING INSTRUCTION:
+DO NOT solve the questions yourself. DO NOT generate new explanations. 
+ONLY copy the exact explanation or solution text already present in the PDF document. If no solution is provided in the PDF, leave the explanation empty.
+
+CRITICAL INSTRUCTION FOR MATH FORMULAS:
+You MUST convert ALL math formulas, equations, symbols, fractions, superscripts, subscripts, and greek letters into standard Unicode characters. 
+DO NOT USE LaTeX strings like \\frac, \\sqrt, $x^2$. 
+Instead, use unicode representations like ½, √, x², α, β, etc.
+
+Output the data strictly according to the requested JSON schema.
+"""
