@@ -1,0 +1,9 @@
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+google-genai
+pydantic
+python-dotenv
+streamlit
+PyPDF2
+json-repair
