@@ -23,9 +23,9 @@ client = genai.Client(api_key=api_key)
 
 class QuestionModel(BaseModel):
     question_text: str = Field(description="The full math question text, with all math converted to Unicode.")
-    options: List[str] = Field(description="The 4 options for the question, converted to Unicode.")
-    correct_answer: str = Field(description="The correct option from the choices provided.")
-    explanation: str = Field(description="The detailed, exact explanation and solution for the question, strictly using Unicode math.")
+    options: List[str] = Field(default=[], description="The 4 options for the question, converted to Unicode.")
+    correct_answer: str = Field(default="", description="The correct option from the choices provided.")
+    explanation: str = Field(default="", description="The detailed, exact explanation and solution for the question, strictly using Unicode math.")
 
 class ExtractionResult(BaseModel):
     exam_name: Optional[str] = Field(description="Name of the exam, if identifiable from the document headers/footers.")
